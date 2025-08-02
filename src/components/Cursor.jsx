@@ -1,101 +1,73 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Cursor.css";
+import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function Cursor() {
-  const cursorRef = useRef(null);
-  const pos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const cursorPos = useRef({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
-  const [hovering, setHovering] = useState(false);
+const Cursor = () => {
+  const [isHovering, setIsHovering] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    let animationFrame;
-
-    // Animate cursor position smoothly towards mouse position
-    const animate = () => {
-      cursorPos.current.x += (pos.current.x - cursorPos.current.x) * 0.15;
-      cursorPos.current.y += (pos.current.y - cursorPos.current.y) * 0.15;
-
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${cursorPos.current.x}px, ${cursorPos.current.y}px, 0)`;
-      }
-
-      animationFrame = requestAnimationFrame(animate);
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX - 16);
+      mouseY.set(e.clientY - 16);
     };
 
-    animate();
+    window.addEventListener("mousemove", handleMouseMove);
 
-    // Update mouse position on mousemove
-    const onMouseMove = (e) => {
-      pos.current.x = e.clientX;
-      pos.current.y = e.clientY;
-    };
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
 
-    // On mouseover, check the computed cursor style of the hovered element
-    const onMouseOver = (e) => {
-      const el = e.target;
-      if (!el) return;
-
-      const style = window.getComputedStyle(el);
-      const cursorStyle = style.cursor;
-
-      // List of cursor styles that indicate interactive elements
-      const interactiveCursors = [
-        "pointer",
-        "grab",
-        "alias",
-        "copy",
-        "move",
-        "zoom-in",
-        "zoom-out",
-      ];
-
-      if (interactiveCursors.includes(cursorStyle)) {
-        setHovering(true);
-      }
-    };
-
-    // On mouseout, remove hover if the cursor style matches
-    const onMouseOut = (e) => {
-      const el = e.target;
-      if (!el) return;
-
-      const style = window.getComputedStyle(el);
-      const cursorStyle = style.cursor;
-
-      const interactiveCursors = [
-        "pointer",
-        "grab",
-        "alias",
-        "copy",
-        "move",
-        "zoom-in",
-        "zoom-out",
-      ];
-
-      if (interactiveCursors.includes(cursorStyle)) {
-        setHovering(false);
-      }
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseover", onMouseOver);
-    document.addEventListener("mouseout", onMouseOut);
+    // This is the key part: Find all interactive elements
+    const interactiveElements = document.querySelectorAll(
+      "button, a, .interactive"
+    );
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter);
+      el.addEventListener("mouseleave", handleMouseLeave);
+    });
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseover", onMouseOver);
-      document.removeEventListener("mouseout", onMouseOut);
-      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("mousemove", handleMouseMove);
+      interactiveElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
+      });
     };
-  }, []);
+  }, [mouseX, mouseY]);
+
+  const cursorVariants = {
+    default: { scale: 1, opacity: 1 },
+    hover: {
+      scale: 2,
+      opacity: 0.5,
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+    },
+  };
 
   return (
-    <div
-      ref={cursorRef}
-      className={`custom-cursor ${hovering ? "hover" : ""}`}
+    <motion.div
+      className="custom-cursor"
+      style={{
+        translateX: cursorX,
+        translateY: cursorY,
+        pointerEvents: "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: 32,
+        height: 32,
+        borderRadius: "50%",
+        backgroundColor: "white",
+        zIndex: 9999,
+      }}
+      variants={cursorVariants}
+      animate={isHovering ? "hover" : "default"}
     />
   );
-}
+};
+
+export default Cursor;

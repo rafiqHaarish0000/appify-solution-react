@@ -1,27 +1,40 @@
-/* src/App.css */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", sans-serif;
-  background-color: #ffffff;
-  color: #111;
+/* Hide default cursor and scrollbars */
+body {
+  cursor: none;
+  background-color: #000;
+  color: #fff;
+  font-family: sans-serif;
+  overflow: hidden; 
 }
 
-.App {
-  overflow-x: hidden;
+/* Scroll container that holds the content and has the native scrollbar */
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-section {
-  padding: 20px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
-h1, h2, h3 {
-  margin: 0 0 20px 0;
+/* Content wrapper that will be animated based on scroll position */
+.content-wrapper {
+  will-change: transform; /* Optimize animation performance */
+  /* This height is a placeholder. It should be larger than the viewport to allow scrolling */
+  height: 300vh; /* Adjust this value based on your total content height */
 }
 
-p {
-  max-width: 600px;
-  line-height: 1.6;
+/* The rest of your styles for other components */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 9999;
+  pointer-events: none;
 }
