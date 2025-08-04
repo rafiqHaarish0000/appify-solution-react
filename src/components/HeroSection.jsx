@@ -1,95 +1,55 @@
+// src/components/HeroSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import videoUrl from "../assets/banner_video.mp4";
-import "./CubertoLayout.css"; // We'll write styles here
+import "../styles/HeroSection.css";
+import heroImage from "../assets/header_img.jpg"; // Add a beautiful banner image
 
 function HeroSection() {
   return (
-    <section
-      style={{
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        padding: "50px 20px",
-      }}
-    >
-      {/* Image with scroll animation */}
-      {/* Heading with scroll animation */}
-      {/* <motion.img
-        src={headerImg}
-        alt="banner_img"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }} // triggers once when in view
-        style={{
-          marginTop: "10px",
-          display: "flex",
-          borderRadius: "20px",
-          objectFit: "cover",
-          marginBottom: "1rem",
-          justifyContent: "center",
-          boxShadow: "0 4px 10px rgba(255, 255, 255, 1)",
-          maxWidth: "100%",
-        }}
-      /> */}
-      <motion.video
-        src={videoUrl} // e.g., "/assets/banner.mp4" or from a CDN
-        autoPlay
-        loop
-        muted
-        playsInline
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        style={{
-          marginTop: "10px",
-          display: "flex",
-          borderRadius: "20px",
-          objectFit: "cover",
-          marginBottom: "1rem",
-          justifyContent: "center",
-          boxShadow: "0 4px 10px rgba(255, 255, 255, 1)",
-          maxWidth: "100%",
-          width: "100%", // ensure it scales properly
-          height: "auto", // maintain aspect ratio
-        }}
+    <section className="hero-section">
+      {/* Background image */}
+      <motion.img
+        src={heroImage}
+        alt="Hero"
+        className="hero-bg"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
       />
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }}
-        style={{
-          fontSize: "3rem",
-          fontWeight: 700,
-          fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
-          color: "#FFFF",
-          lineHeight: 1.2,
-          marginBottom: "1rem",
-        }}
-      >
-        Appify Solutions
-      </motion.h1>
 
-      {/* Paragraph with scroll animation */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 1 }}
-        viewport={{ once: true }}
-        style={{
-          fontSize: "1.2rem",
-          color: "#807c7cff",
-          maxWidth: "600px",
-          margin: "0 auto",
-          textAlign: "center",
-        }}
-      >
-        We build digital products that transform businesses.
-      </motion.p>
+      {/* Overlay */}
+      <div className="hero-overlay" />
+
+      {/* Content */}
+      <div className="hero-content">
+        <motion.h1
+          className="hero-title"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Appify Solutions
+        </motion.h1>
+
+        <motion.p
+          className="hero-subtitle"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+        >
+          We build digital products that transform businesses.
+        </motion.p>
+
+        <motion.a
+          href="#services"
+          className="hero-button"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          Explore Services
+        </motion.a>
+      </div>
     </section>
   );
 }

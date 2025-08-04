@@ -1,7 +1,6 @@
-// components/ContactSection.jsx
 import React from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import "./ContactSection.css";
+import { motion, useMotionValue } from "framer-motion";
+import "../styles/ContactSection.css";
 
 const ContactSection = () => {
   const rotateX = useMotionValue(0);
@@ -30,8 +29,8 @@ const ContactSection = () => {
       <motion.div
         className="contact-card"
         style={{
-          rotateX: rotateX,
-          rotateY: rotateY,
+          rotateX,
+          rotateY,
           transformStyle: "preserve-3d",
         }}
         onMouseMove={handleMouseMove}
@@ -39,15 +38,24 @@ const ContactSection = () => {
       >
         <h2>Let’s Build Something Together</h2>
         <p>
-          Have a project or an idea? We'd love to hear from you. Fill out the
-          form or just say hello directly.
+          Got a project in mind or just want to chat? We’re excited to hear from
+          you. Drop your message and we’ll reach out soon.
         </p>
 
         <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
           <input type="text" placeholder="Your Name" required />
           <input type="email" placeholder="Your Email" required />
           <textarea placeholder="Your Message" rows="5" required />
-          <button type="submit">Send Message</button>
+          <motion.button
+            type="submit"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 18px rgba(183, 108, 255, 0.6)",
+            }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Send Message
+          </motion.button>
         </form>
       </motion.div>
     </section>

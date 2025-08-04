@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./ProjectsSection.css"; // You'll need a CSS file for this component
+import "../styles/ProjectsSection.css"; // You'll need a CSS file for this component
 
 // Animated Button Component (can be reused or defined here)
 const AnimatedButton = ({ text, onClick }) => {
@@ -69,32 +69,32 @@ const ProjectsSection = () => {
       image:
         "https://plus.unsplash.com/premium_photo-1682126325927-0e6399d5d170?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
-    {
-      title: "Frontend Developer",
-      description: "Design engaging UIs using React, Tailwind, and animations.",
-      image:
-        "https://images.unsplash.com/photo-1633409361618-c73427e4e206?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "Backend Developer",
-      description:
-        "Build fast APIs and microservices with Node.js and Spring Boot.",
-      image:
-        "https://images.unsplash.com/photo-1667372531881-6f975b1c86db?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "Mobile App Developer",
-      description: "Create stunning apps with Flutter, Dart, and Firebase.",
-      image:
-        "https://images.unsplash.com/photo-1643639779556-f22985fb5bbc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      title: "Cybersecurity Specialist",
-      description:
-        "Protect systems using ethical hacking, firewalls, and audits.",
-      image:
-        "https://images.unsplash.com/photo-1614064548237-096f735f344f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
+    // {
+    //   title: "Frontend Developer",
+    //   description: "Design engaging UIs using React, Tailwind, and animations.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1633409361618-c73427e4e206?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    // },
+    // {
+    //   title: "Backend Developer",
+    //   description:
+    //     "Build fast APIs and microservices with Node.js and Spring Boot.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1667372531881-6f975b1c86db?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    // },
+    // {
+    //   title: "Mobile App Developer",
+    //   description: "Create stunning apps with Flutter, Dart, and Firebase.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1643639779556-f22985fb5bbc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    // },
+    // {
+    //   title: "Cybersecurity Specialist",
+    //   description:
+    //     "Protect systems using ethical hacking, firewalls, and audits.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1614064548237-096f735f344f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    // },
   ];
 
   const containerVariants = {
@@ -122,7 +122,7 @@ const ProjectsSection = () => {
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <h2 className="section-title">Featured projects</h2>
+      <h2 className="projects-title">Featured projects</h2>
       <motion.div className="projects-grid" variants={containerVariants}>
         {projects.map((project, index) => (
           <ProjectCard

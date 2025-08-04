@@ -1,7 +1,7 @@
 // components/BlogSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import "./BlogSection.css";
+import "../styles/BlogSection.css";
 
 const blogPosts = [
   {
