@@ -1,4 +1,3 @@
-// components/BlogSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import "../styles/BlogSection.css";
@@ -8,25 +7,25 @@ const blogPosts = [
     title: "Reimagining UX for a Mobile Bank",
     subtitle: "Case Study",
     image:
-      "https://plus.unsplash.com/premium_photo-1720025910347-6286f827471d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1720025910347-6286f827471d?fm=jpg&q=60&w=3000",
   },
   {
     title: "Building Interactions in 3D",
     subtitle: "Development",
     image:
-      "https://images.unsplash.com/photo-1635241161466-541f065683ba?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1635241161466-541f065683ba?fm=jpg&q=60&w=3000",
   },
   {
     title: "Mastering Micro-Animations",
     subtitle: "Motion Design",
     image:
-      "https://plus.unsplash.com/premium_photo-1661962423418-24746c9b0137?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661962423418-24746c9b0137?fm=jpg&q=60&w=3000",
   },
   {
     title: "How We Design for Delight",
     subtitle: "UX/UI",
     image:
-      "https://plus.unsplash.com/premium_photo-1661431150262-e450d0076044?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661431150262-e450d0076044?fm=jpg&q=60&w=3000",
   },
 ];
 

@@ -8,15 +8,13 @@
   padding: 100px 40px;
   width: 100%;
   max-width: 1300px;
-  margin: 50px auto 50px auto;
+  margin: 50px auto;
   border-radius: 24px;
-  box-shadow: 0 16px 40px rgba(136, 58, 255, 0.15); /* reduced blur + layers */
+  box-shadow: 0 16px 40px rgba(136, 58, 255, 0.15);
   border: 1px solid rgba(183, 108, 255, 0.25);
 }
 
-
-/* Image section */
-.cuberto-image img {
+.cuberto-image video {
   width: 360px;
   max-width: 100%;
   height: auto;
@@ -26,12 +24,6 @@
   transition: transform 0.25s ease;
 }
 
-.cuberto-image img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 36px rgba(183, 108, 255, 0.28);
-}
-
-/* Text section */
 .cuberto-text {
   max-width: 640px;
   width: 100%;
@@ -56,7 +48,6 @@
   word-break: break-word;
 }
 
-/* Button style */
 .cuberto-button {
   margin-top: 28px;
   padding: 16px 42px;
@@ -87,8 +78,9 @@
     gap: 40px;
   }
 
-  .cuberto-image img {
+  .cuberto-image video {
     width: 260px;
+    height: 180px;
   }
 
   .cuberto-text p {

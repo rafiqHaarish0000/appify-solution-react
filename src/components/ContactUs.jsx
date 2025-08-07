@@ -1,12 +1,11 @@
 // src/components/ContactUs.jsx
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "../styles/ContactUs.css";
 import PageTransition from "./PageTransition";
 
-// Custom marker icon
 const markerIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   iconSize: [25, 41],
@@ -71,16 +70,36 @@ const contactActions = [
 ];
 
 const ContactUs = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <PageTransition>
       <div className="contact-page">
+        {/* Mobile Hamburger Menu */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </div>
+        {menuOpen && (
+          <div className="mobile-menu">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+        )}
+
         <h1>Contact Our Global Teams</h1>
         <p className="subtitle">
           We’re available in 4 countries to serve you better.
         </p>
 
         <div className="map-wrapper">
-          <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={false}>
+          <MapContainer
+            center={[20, 0]}
+            zoom={2}
+            scrollWheelZoom={false}
+            style={{ height: "100%", width: "100%" }}
+          >
             <TileLayer
               url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="© OpenStreetMap"
@@ -144,9 +163,8 @@ const ContactUs = () => {
           </div>
         </div>
 
-        {/* Footer Section */}
         <div className="footer-section">
-          <h3>We’re here to help you grow globally </h3>
+          <h3>We’re here to help you grow globally</h3>
           <p>
             Whether you’re from India, the US, Singapore, or Malaysia — reach
             out to us anytime.

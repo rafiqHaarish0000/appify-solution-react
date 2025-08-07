@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "../styles/HeroSection.css";
-import heroImage from "../assets/header_img.jpg"; // Add a beautiful banner image
+import heroImage from "../assets/header_img.jpg";
 
 function HeroSection() {
   return (

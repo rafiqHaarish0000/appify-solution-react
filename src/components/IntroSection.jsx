@@ -42,7 +42,7 @@ const IntoSection = () => {
         />
       </motion.div>
 
-      {/* Text Block with float-in effect */}
+      {/* Text Block */}
       <motion.div
         className="cuberto-text"
         initial={{ opacity: 0, y: 40 }}

@@ -67,3 +67,40 @@
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 0 12px rgba(183, 108, 255, 0.5), 0 0 24px rgba(110, 0, 255, 0.3);
 }
+
+/* 🔁 Responsive Design */
+@media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+
+  .hero-content {
+    padding: 0 10px;
+  }
+}
