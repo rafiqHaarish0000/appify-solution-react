@@ -96,7 +96,7 @@ const ContactUs = () => {
         <div className="map-wrapper">
           <MapContainer
             center={[20, 0]}
-            zoom={2}
+            zoom={1}
             scrollWheelZoom={false}
             style={{ height: "100%", width: "100%" }}
           >
