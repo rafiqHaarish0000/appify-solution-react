@@ -89,13 +89,14 @@ const ProjectsSection = () => {
 
   return (
     <motion.section
+      id="products"
       className="projects-section"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <h2 className="projects-title">Featured projects</h2>
+      <h2 className="projects-title">Projects</h2>
       <motion.div className="projects-grid" variants={containerVariants}>
         {projects.map((project, index) => (
           <ProjectCard

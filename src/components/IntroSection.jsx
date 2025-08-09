@@ -4,7 +4,7 @@ import videoUrl from "../assets/sphere.mp4";
 
 const IntoSection = () => {
   return (
-    <section className="cuberto-layout">
+    <section id="company" className="cuberto-layout">
       {/* Video Section with bounce & fade-in */}
       <motion.div
         className="cuberto-image"

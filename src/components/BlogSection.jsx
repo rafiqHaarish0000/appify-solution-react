@@ -31,7 +31,7 @@ const blogPosts = [
 
 const BlogSection = () => {
   return (
-    <section className="blog-section">
+    <section id="blog" className="blog-section">
       <h2 className="blog-title">Our Blog</h2>
       <div className="blog-grid">
         {blogPosts.map((post, index) => (

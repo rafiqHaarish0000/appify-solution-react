@@ -10,7 +10,13 @@ function Header() {
   const handleNavClick = (link) => {
     setMenuOpen(false);
     if (link.startsWith("/")) {
-      navigate(link);
+      navigate(link); // route navigation
+    } else if (link.startsWith("#")) {
+      const id = link.slice(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -21,7 +27,7 @@ function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="logo" onClick={() => navigate("/")}>
+      <div className="logo" onClick={() => (window.location.href = "/")}>
         Appify
       </div>
 
@@ -30,17 +36,42 @@ function Header() {
       </div>
 
       <nav className={`nav ${menuOpen ? "active" : ""}`}>
-        <a href="#services" onClick={() => handleNavClick("#services")}>
+        <a
+          href="#services"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#services");
+          }}
+        >
           Services
         </a>
-        <a href="#projects" onClick={() => handleNavClick("#projects")}>
+
+        <a
+          href="#products"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#products");
+          }}
+        >
           Projects
         </a>
-        <a href="#company" onClick={() => handleNavClick("#company")}>
+        <a
+          href="#company"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#company");
+          }}
+        >
           Company
         </a>
-        <a href="#blog" onClick={() => handleNavClick("#blog")}>
-          Blog
+        <a
+          href="#blog"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#blog");
+          }}
+        >
+          Research
         </a>
         <button
           className="contactus"

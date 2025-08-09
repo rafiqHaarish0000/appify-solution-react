@@ -177,6 +177,11 @@ body {
   border-radius: 20px;
 }
 
+.page-container {
+  background: linear-gradient(135deg, #fdf6ff, #eae4fc);
+  min-height: 200vh;
+}
+
 /* =========
    Responsive Layout
 =========== */

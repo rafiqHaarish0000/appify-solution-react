@@ -4,7 +4,7 @@ body {
   background-color: #000;
   color: #fff;
   font-family: sans-serif;
-  overflow: hidden; 
+  overflow: none; 
 }
 
 /* Scroll container that holds the content and has the native scrollbar */
