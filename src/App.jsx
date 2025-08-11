@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import LoadingScreen from "./components/LoadingScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useRef } from "react";
 import { Parallax } from "@react-spring/parallax";
@@ -11,14 +9,6 @@ import "./App.css";
 
 export default function App() {
   const parallaxRef = useRef();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 4000); // 4 sec loading
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) return <LoadingScreen />;
 
   return (
     <Router>

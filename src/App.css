@@ -1,28 +1,32 @@
-body {
+/* App.css */
+html, body, #root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  cursor: none; /* Hide default cursor */
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(6, 6, 6);
   overflow-x: hidden;
 }
 
-.app {
+.app-container {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.main-content {
-  scroll-behavior: smooth;
+.parallax-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 
-/* Smooth transitions for all elements */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Ensure pointer events work with custom cursor */
-button, a, [role="button"] {
-  cursor: none !important;
+/* Ensure header stays on top */
+.glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Higher than parallax */
 }

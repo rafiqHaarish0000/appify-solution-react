@@ -1,0 +1,23 @@
+.contact-container label {
+  display: block;
+  font-weight: 700;
+  height: 80px;
+  cursor: none;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 1rem;
+  background: #222;
+  color: #eee;
+  border: none;
+  outline: none;
+}
+
+.contact-form button:hover {
+  background-color: #444;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
