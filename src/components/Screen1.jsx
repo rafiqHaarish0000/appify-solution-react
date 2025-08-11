@@ -1,6 +1,6 @@
 import { ParallaxLayer } from "@react-spring/parallax";
 import { motion } from "framer-motion";
-import bgImage from "../assets/whatwedo.jpg";
+import bgImage from "../assets/backgroundimg.png";
 export default function Screen1() {
   return (
     <>
@@ -53,23 +53,26 @@ export default function Screen1() {
               textAlign: "center",
             }}
           >
-            Appify Solution
+            Zynapse
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 1, ease: "easeOut" }} // delay 2 seconds
+            transition={{ delay: 2, duration: 1, ease: "easeOut" }}
             style={{
-              fontSize: "1.1rem",
+              fontSize: "2.1rem",
               lineHeight: "1.6",
-              color: "#38f9d690",
+              color: "#F5F5F5", // soft white for better contrast on grey
               margin: 0,
               textAlign: "center",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              textShadow: "0px 2px 6px rgba(0,0,0,0.3)", // improves readability
             }}
           >
-            We create innovative digital solutions that transform businesses and
-            deliver exceptional user experiences.
+            <span style={{ color: "#9fa1fbff" }}>Smart Systems.</span> Seamless
+            Decisions.
           </motion.p>
         </div>
       </ParallaxLayer>

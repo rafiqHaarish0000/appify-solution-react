@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import contactbg from "../assets/contactimg.jpg";
+import contactbg from "../assets/contactbg.jpg";
 import personimg from "../assets/contactus.jpg";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -17,7 +17,7 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-const accentColor = "#38f9d7";
+const accentColor = "#7375feff";
 
 export default function ContactPage() {
   // Animation variants
@@ -72,14 +72,17 @@ export default function ContactPage() {
         >
           <h1
             style={{
-              fontSize: "3rem",
+              fontSize: "4rem",
               marginBottom: "20px",
               fontWeight: "bold",
+              fontWeight: "900",
               textAlign: "center",
+              fontFamily: "'Poppins', sans-serif",
+              color: "#474ae6ff",
               letterSpacing: "0.5px",
             }}
           >
-            Get in touch
+            Get In Touch
           </h1>
           <p
             style={{ fontSize: "1.2rem", lineHeight: 1.6, textAlign: "center" }}
@@ -175,29 +178,34 @@ export default function ContactPage() {
               variants={fadeUp}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               style={{
-                background: "rgba(255, 255, 255, 0.47)",
+                background: "rgba(0, 0, 0, 0.47)",
                 padding: 24,
                 borderRadius: 16,
                 boxShadow: "0 8px 32px rgb(255 255 255 / 0.05)",
                 color: "#000",
                 textAlign: "center",
-                fontWeight: "600",
+                fontWeight: "900",
                 transition: "transform 0.3s ease",
               }}
               whileHover={{ y: -6 }}
             >
               <h4
                 style={{
-                  color: accentColor,
+                  color: "white",
                   marginBottom: 12,
-                  fontSize: "1.2rem",
+                  fontSize: "1.5rem",
                   lineHeight: 1.3,
                 }}
               >
                 {title}
               </h4>
               <p
-                style={{ fontWeight: "400", fontSize: "1rem", lineHeight: 1.5 }}
+                style={{
+                  fontWeight: "400",
+                  fontSize: "1rem",
+                  lineHeight: 1.5,
+                  color: "white",
+                }}
               >
                 {content}
               </p>

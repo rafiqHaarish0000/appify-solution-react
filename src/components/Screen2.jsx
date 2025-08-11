@@ -11,7 +11,7 @@ export default function Screen2() {
         offset={1}
         speed={0.2}
         style={{
-          backgroundColor: "#030303ff",
+          backgroundColor: "#050D21",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -59,7 +59,6 @@ export default function Screen2() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ delay: 2, duration: 3, ease: "easeOut" }}
               whileHover={{
-                rotate: 360, // rotate 5 degrees on hover
                 transition: { duration: 0.8, ease: "easeInOut" },
               }}
               style={{
@@ -86,11 +85,6 @@ export default function Screen2() {
               maxWidth: "500px",
               borderRadius: "20px",
               padding: "2rem",
-              background: "rgba(255, 255, 255, 0.1)", // light transparent white
-              boxShadow: "0 8px 32px 0 rgba(255, 255, 255, 0.37)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
-              border: "1px solid rgba(255, 255, 255, 0.18)",
               color: "#fff",
               display: "flex",
               flexDirection: "column",
@@ -99,16 +93,30 @@ export default function Screen2() {
           >
             <h2
               style={{
-                fontSize: "2.5rem",
-                fontWeight: 700,
-                marginBottom: "1.5rem",
+                fontSize: "3.5rem",
+                color: "#7375feff",
+                textAlign: "center",
+                fontSize: "4rem",
+                fontWeight: "900",
+                letterSpacing: "0.1em",
               }}
             >
               What We Do
             </h2>
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "120px", opacity: 1 }}
+              transition={{ duration: 3, ease: "easeOut", delay: 2 }}
+              style={{
+                height: "4px",
+                background: "linear-gradient(90deg, #111c95ff, #00e5ff)",
+                margin: "0 auto 1.5rem auto",
+                borderRadius: "2px",
+              }}
+            />
             <p
               style={{
-                fontSize: "1.1rem",
+                fontSize: "2.1rem",
                 lineHeight: "1.6",
                 marginBottom: "2rem",
                 textAlign: "center",
@@ -121,10 +129,10 @@ export default function Screen2() {
             <button
               style={{
                 padding: "0.75rem 2rem",
-                fontSize: "1rem",
+                fontSize: "1.6rem",
                 fontWeight: "600",
                 borderRadius: "30px",
-                border: "2px solid #38f9d7",
+                border: "2px solid #074ADE",
                 backgroundColor: "transparent",
                 color: "#fff",
                 cursor: "pointer",

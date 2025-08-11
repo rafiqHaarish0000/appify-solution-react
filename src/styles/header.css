@@ -4,15 +4,26 @@
   width: 100%;
   padding: 1rem 2rem;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  
-  /* Enhanced border line with animation */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Glassmorphism background */
+  background: rgba(5, 13, 33, 0.55); /* Transparent dark navy */
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+  /* Smooth subtle shadow */
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
+
+  /* Border glow effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
+
+  /* Animated gradient border effect */
+  border-image: linear-gradient(90deg, rgba(17, 28, 149, 0.6), rgba(0, 229, 255, 0.6));
+  border-image-slice: 1;
 }
+
+
+
 
 /* Scrolled state for header */
 .glass-header.scrolled {
@@ -41,7 +52,7 @@
 }
 
 .logo:hover {
-  color: #38f9d7;
+  color: rgb(33, 36, 212);
   transform: translateY(-2px);
 }
 
@@ -74,7 +85,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #38f9d7, #00a1ff);
+  background: linear-gradient(90deg, #9fa1fbff, #00a1ff);
   transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -86,14 +97,40 @@
   width: 100%;
 }
 
-/* Active link state */
-.nav-link.active {
-  color: white;
+/* make sure ul is positioned relative so indicator can be absolute inside it */
+.nav-list {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative; /* IMPORTANT */
+  align-items: center;
 }
+
+/* indicator */
+.active-indicator {
+  position: absolute;
+  bottom: -8px;            /* adjust to sit below nav items */
+  height: 3px;   /* highlight color */
+  border-radius: 3px;
+  left: 0;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+/* basic nav-item styles (keep as you had, or adapt) */
+.nav-item { cursor: pointer; }
+
+/* an active link style */
+.nav-link.active {
+  font-weight: 700;
+}
+
 
 .nav-link.active::after {
   width: 100%;
-  background: #38f9d7;
+  background: #9fa1fbff;
 }
 
 /* Mobile responsiveness */

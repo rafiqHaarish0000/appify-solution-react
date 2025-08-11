@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import "../styles/screens.css";
 import bgWeb from "../assets/lookleft.jpg";
+import backbg from "../assets/backgroundimg.png";
 
 const sampleImage = bgWeb;
 
@@ -32,7 +33,10 @@ export default function ResearchScreen() {
         offset={4}
         speed={0}
         style={{
-          background: "linear-gradient(135deg, #080808ff 0%, #050505ff 100%)",
+          backgroundImage: `url(${backbg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "brightness(0.5)",
           zIndex: -1,
         }}
       />
@@ -126,7 +130,7 @@ export default function ResearchScreen() {
                       display: "inline-block",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#38f9d7";
+                      e.currentTarget.style.backgroundColor = "#7375feff";
                       e.currentTarget.style.color = "#111";
                     }}
                     onMouseLeave={(e) => {
@@ -158,7 +162,7 @@ export default function ResearchScreen() {
                   borderRadius: "20px",
                   objectFit: "cover",
                   boxShadow: "0 16px 30px rgba(0,0,0,0.1)",
-                  border: "3px solid #38f9d7",
+                  border: "3px solid #7375feff",
                   transformStyle: "preserve-3d",
                   perspective: "1000px",
                   transition: "transform 0.3s ease",

@@ -73,19 +73,26 @@ p {
 }
 
 .contact-button {
+   padding: 1rem 2rem;
+cursor: pointer;
+  user-select: none;
+  font-family: "Poppins", sans-serif;
+  background: #7375feff;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.contact-button:hover {
+  
   padding: 1rem 2rem;
-  background: white;
-  color: #333;
+  background: black;
+  color: #fff;
   border-radius: 2rem;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
   transition: transform 0.3s;
   display: inline-block;
-}
-
-.contact-button:hover {
-  transform: scale(1.05);
 }
 
 /* Add these styles to your screens.css */
@@ -135,11 +142,6 @@ p {
   display: none;
 }
 
-.contact-button {
-  cursor: pointer;
-  user-select: none;
-  font-family: "Poppins", sans-serif;
-}
 
 .cards-container {
   display: flex;

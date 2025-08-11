@@ -22,8 +22,8 @@
 /* 3D cube styles */
 .cube {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 160px;
+  height: 160px;
   transform-style: preserve-3d;
   margin-bottom: 1.5rem;
 }

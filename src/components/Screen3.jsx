@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import "../styles/screens.css";
-import bgImage from "../assets/building2.jpg";
+import bgImage from "../assets/backgroundimg.png";
 
 export default function Screen3() {
   const containerRef = useRef(null);
@@ -133,7 +133,7 @@ export default function Screen3() {
                 display: "flex",
                 overflowX: "auto",
                 scrollSnapType: "x mandatory",
-                gap: "1.5rem",
+                gap: "8rem",
                 paddingBottom: "2rem",
                 justifyContent: "center",
                 scrollbarWidth: "none", // Firefox
@@ -144,7 +144,7 @@ export default function Screen3() {
               {services.map(({ title, desc }, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ rotateY: 15, rotateX: 10, scale: 1.05 }}
+                  whileHover={{ rotateY: 20, rotateX: 10, scale: 1.05 }}
                   style={{
                     width: "400px",
                     height: "320px", // consistent fixed height
@@ -156,7 +156,7 @@ export default function Screen3() {
                     boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
                     scrollSnapAlign: "center",
                     textAlign: "center",
-                    cursor: "pointer",
+                    cursor: "none",
                     color: "#fff",
                     overflow: "hidden", // prevent overflow
                     transformStyle: "preserve-3d",
@@ -165,18 +165,18 @@ export default function Screen3() {
                     userSelect: "none",
                     display: "flex", // flex column layout
                     flexDirection: "column",
-                    justifyContent: "flex-start",
+                    justifyContent: "center",
                   }}
                 >
                   <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 10, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
                     style={{
-                      fontSize: "2rem",
+                      fontSize: "2.5rem",
                       marginBottom: "1rem",
                       fontFamily: "'Poppins', sans-serif",
-                      color: "#38f9d7",
+                      color: "#9fa1fbff",
                       flexShrink: 0,
                       wordBreak: "break-word", // wrap long words nicely
                     }}
@@ -189,8 +189,8 @@ export default function Screen3() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
                     style={{
-                      fontSize: "1.15rem",
-                      color: "#ccc",
+                      fontSize: "1.5rem",
+                      color: "#fff",
                       fontFamily: "'Poppins', sans-serif",
                       lineHeight: 1.5,
                       textShadow: "0 0 5px rgba(0,0,0,0.15)",
@@ -213,7 +213,7 @@ export default function Screen3() {
                 marginTop: "0.5rem",
                 display: "flex",
                 justifyContent: "center",
-                gap: "1rem",
+                gap: "3rem",
               }}
             >
               {[...Array(dotsCount)].map((_, i) => (
@@ -227,7 +227,7 @@ export default function Screen3() {
                     border: "none",
                     cursor: "pointer",
                     background:
-                      i === activeIndex ? "#38f9d7" : "rgba(255,255,255,0.3)",
+                      i === activeIndex ? "#7476ffff" : "rgba(255,255,255,0.3)",
                     transition: "all 0.3s ease",
                   }}
                   aria-label={`Go to slide ${i + 1}`}

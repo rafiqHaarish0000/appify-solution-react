@@ -51,9 +51,10 @@ export default function Screen4() {
     <>
       {/* Background gradient layer */}
       <ParallaxLayer
-        offset={3}
-        speed={0}
+        offset={4}
+        speed={0.2}
         style={{
+          backgroundColor: "#050D21",
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.5)",
@@ -66,6 +67,7 @@ export default function Screen4() {
         offset={3}
         speed={0.4}
         style={{
+          backgroundColor: "#050D21",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -89,23 +91,19 @@ export default function Screen4() {
             to="/projects"
             className="contact-button"
             style={{
-              backgroundColor: "#000", // black bg
-              padding: "14px 32px",
-              color: "white", // white text
               fontWeight: "700",
               borderRadius: "9999px",
               textDecoration: "none",
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              boxShadow: "0 8px 15px rgba(0, 0, 0, 0.3)",
               transition: "background-color 0.3s ease",
             }}
             onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "#222")
+              (e.currentTarget.style.backgroundColor = "#000")
             }
             onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "#000")
+              (e.currentTarget.style.backgroundColor = "#9fa1fbff")
             }
           >
             All Products
@@ -131,7 +129,7 @@ export default function Screen4() {
           <div
             style={{
               display: "flex",
-              gap: "24px",
+              gap: "80px",
               flexWrap: "wrap",
               maxWidth: "1200px",
               margin: "40px auto",
@@ -143,25 +141,51 @@ export default function Screen4() {
                 key={project.title}
                 style={{
                   position: "relative",
-                  width: "320px",
-                  height: "500px",
+                  width: "500px",
+                  height: "300px",
                   borderRadius: "12px",
                   backgroundImage: `url(${project.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   cursor: "pointer",
+                  border: "2px solid #7375feff",
                   overflow: "hidden",
                 }}
                 initial="rest"
                 whileHover="hover"
                 animate="rest"
               >
+                {/* Top title visible by default */}
+                <motion.div
+                  variants={{
+                    rest: { opacity: 1, y: 0 },
+                    hover: { opacity: 0, y: -20 },
+                  }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  style={{
+                    position: "absolute",
+                    top: "80%",
+                    left: "0%%",
+                    transform: "translate(-50%, -50%)",
+                    textAlign: "center",
+                    fontWeight: "900",
+                    fontSize: "2.5rem",
+                    color: "#fdfdfdff",
+                    textShadow: "0 2px 6px rgba(0,0,0,0.5)",
+                    pointerEvents: "none",
+                    width: "100%", // ensures text stays centered even if it wraps
+                  }}
+                >
+                  {project.title}
+                </motion.div>
+
                 {/* Background dim on hover */}
                 <motion.div
                   variants={{
                     rest: { filter: "brightness(1)" },
-                    hover: { filter: "brightness(0.5)" },
+                    hover: { filter: "brightness(0.2)" },
                   }}
+                  transition={{ duration: 0.3 }}
                   style={{
                     position: "absolute",
                     inset: 0,
@@ -170,13 +194,13 @@ export default function Screen4() {
                   }}
                 />
 
-                {/* Overlay content */}
+                {/* Overlay content (description + button) appears on hover */}
                 <motion.div
                   variants={{
                     rest: { opacity: 0, y: 20 },
                     hover: { opacity: 1, y: 0 },
                   }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   style={{
                     position: "absolute",
                     inset: 0,
@@ -192,22 +216,20 @@ export default function Screen4() {
                     pointerEvents: "auto",
                   }}
                 >
-                  <h3
+                  <p
                     style={{
-                      margin: "0 0 12px",
-                      fontWeight: "700",
+                      margin: "0 0 20px",
+                      color: "#000",
+                      fontFamily: "'Poppins', sans-serif",
                       fontSize: "1.5rem",
                     }}
                   >
-                    {project.title}
-                  </h3>
-                  <p style={{ margin: "0 0 20px", color: "#555" }}>
                     {project.description}
                   </p>
                   <motion.button
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: "#38f9d7",
+                      backgroundColor: "#9fa1fbff",
                       color: "black",
                     }}
                     style={{
