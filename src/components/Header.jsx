@@ -17,8 +17,8 @@ export default function Header({ parallaxRef }) {
   const navItems = [
     { name: "What We Do", offset: 0.95, isRoute: false },
     { name: "Services", offset: 1.95, isRoute: false },
-    { name: "Product", offset: 2.6, isRoute: false },
-    { name: "Research", offset: 3.95, isRoute: false },
+    { name: "Product", offset: 2.9, isRoute: false },
+    { name: "Research", offset: 4.5, isRoute: false },
     // Contact is included but won't get automatic indicator
     { name: "Contact", offset: 4.95, isRoute: true, noIndicator: true },
   ];

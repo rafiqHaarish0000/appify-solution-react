@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import "./App.css";
+import bgImage from './assets/backgroundimg.png';
 
 export default function App() {
   const parallaxRef = useRef();

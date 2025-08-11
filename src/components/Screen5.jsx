@@ -43,7 +43,7 @@ export default function ResearchScreen() {
 
       {/* Main content container */}
       <ParallaxLayer
-        offset={4.2}
+        offset={4.8}
         speed={0.3}
         style={{
           display: "flex",

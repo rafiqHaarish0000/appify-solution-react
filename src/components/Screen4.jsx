@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import "../styles/screens.css";
-import bgAiImage from "../assets/aiimage.jpeg";
+import bgAiImage from "../assets/robot.jpg";
 import bgFullstackImage from "../assets/fullstack.jpg";
 import bgCloudImage from "../assets/cloud.jpg";
 import bgDataScientist from "../assets/datascience.jpg";
@@ -51,10 +51,9 @@ export default function Screen4() {
     <>
       {/* Background gradient layer */}
       <ParallaxLayer
-        offset={4}
+        offset={3}
         speed={0.2}
         style={{
-          backgroundColor: "#050D21",
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.5)",
@@ -69,6 +68,7 @@ export default function Screen4() {
         style={{
           backgroundColor: "#050D21",
           display: "flex",
+          height: "200vh",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -79,7 +79,7 @@ export default function Screen4() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             style={{
-              color: "#fff",
+              color: "#ffff",
               fontSize: "4rem",
               fontWeight: "900",
               letterSpacing: "0.1em",
@@ -141,7 +141,7 @@ export default function Screen4() {
                 key={project.title}
                 style={{
                   position: "relative",
-                  width: "500px",
+                  width: "400px",
                   height: "300px",
                   borderRadius: "12px",
                   backgroundImage: `url(${project.image})`,
@@ -165,11 +165,11 @@ export default function Screen4() {
                   style={{
                     position: "absolute",
                     top: "80%",
-                    left: "0%%",
+                    left: "0%",
                     transform: "translate(-50%, -50%)",
                     textAlign: "center",
                     fontWeight: "900",
-                    fontSize: "2.5rem",
+                    fontSize: "1.7rem",
                     color: "#fdfdfdff",
                     textShadow: "0 2px 6px rgba(0,0,0,0.5)",
                     pointerEvents: "none",

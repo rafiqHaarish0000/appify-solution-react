@@ -8,7 +8,7 @@ import ResearchScreen from "../components/Screen5";
 export default function HomePage({ parallaxRef }) {
   return (
     <div className="parallax-container">
-      <Parallax ref={parallaxRef} pages={5.5}>
+      <Parallax ref={parallaxRef} pages={6}>
         <IntroScreen />
         <WhatWeDoScreen />
         <ServiceScreen />
