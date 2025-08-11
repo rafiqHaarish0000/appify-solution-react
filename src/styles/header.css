@@ -4,7 +4,7 @@
   width: 100%;
   padding: 1rem 2rem;
   z-index: 1000;
-
+  cursor: none;
   /* Glassmorphism background */
   background: rgba(5, 13, 33, 0.55); /* Transparent dark navy */
   backdrop-filter: blur(14px) saturate(180%);
@@ -18,7 +18,7 @@
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 
   /* Animated gradient border effect */
-  border-image: linear-gradient(90deg, rgba(17, 28, 149, 0.6), rgba(0, 229, 255, 0.6));
+  border-image: linear-gradient(90deg, rgba(113, 114, 124, 0.6), rgba(0, 229, 255, 0.6));
   border-image-slice: 1;
 }
 
@@ -36,6 +36,7 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  cursor: none;
   justify-content: space-between;
   align-items: center;
 }
@@ -85,7 +86,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #9fa1fbff, #00a1ff);
+  background: linear-gradient(90deg, rgb(251, 191, 159), #00a1ff);
   transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -115,6 +116,7 @@
   height: 3px;   /* highlight color */
   border-radius: 3px;
   left: 0;
+
   transform-origin: left center;
   z-index: 1;
 }

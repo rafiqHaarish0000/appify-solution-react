@@ -6,104 +6,124 @@ import bgImage from "../assets/logo.png";
 
 export default function Header({ parallaxRef }) {
   const navigate = useNavigate();
-  const [activeLink, setActiveLink] = useState("Intro");
+  const [activeLink, setActiveLink] = useState(null); // Start with no active link
   const [scrolled, setScrolled] = useState(false);
   const controls = useAnimation();
-  const observerRef = useRef(null);
+  const navListRef = useRef(null);
+  const rafRef = useRef();
+  const lastActiveRef = useRef(null);
 
+  // Only include sections we want indicators for
   const navItems = [
-    { name: "What We Do", offset: 0.8, isRoute: false },
-    { name: "Services", offset: 1.9, isRoute: false },
+    { name: "What We Do", offset: 0.95, isRoute: false },
+    { name: "Services", offset: 1.95, isRoute: false },
     { name: "Product", offset: 2.6, isRoute: false },
-    { name: "Research", offset: 4, isRoute: false },
-    { name: "Contact", offset: 2, isRoute: true },
+    { name: "Research", offset: 3.95, isRoute: false },
+    // Contact is included but won't get automatic indicator
+    { name: "Contact", offset: 4.95, isRoute: true, noIndicator: true },
   ];
 
-  // Helper: move indicator to nav item by index
-  const moveIndicatorToIndex = useCallback(
-    (idx) => {
-      const items = Array.from(document.querySelectorAll(".nav-item"));
-      const el = items[idx];
-      if (!el) return;
-      const parentRect = el.parentElement.getBoundingClientRect();
-      const left = el.offsetLeft; // relative to parent (ul)
-      const width = el.offsetWidth;
+  const moveIndicator = useCallback(
+    (index) => {
+      if (!navListRef.current || index === null) {
+        // Hide indicator if no active section
+        controls.start({ opacity: 0 });
+        return;
+      }
+
+      const items = navListRef.current.querySelectorAll(".nav-item");
+      if (!items[index]) return;
+
+      const item = items[index];
+      const left = item.offsetLeft;
+      const width = item.offsetWidth;
 
       controls.start({
         x: left,
         width,
+        opacity: 1,
         transition: { type: "spring", stiffness: 300, damping: 30 },
       });
     },
     [controls]
   );
 
-  // Update indicator based on activeLink name
-  const updateIndicatorForName = useCallback(
-    (name) => {
-      const idx = navItems.findIndex((i) => i.name === name);
-      if (idx >= 0) moveIndicatorToIndex(idx);
-    },
-    [moveIndicatorToIndex]
-  );
-
-  // Recompute on resize so widths / positions stay correct
   useEffect(() => {
-    const onResize = () => updateIndicatorForName(activeLink);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeLink, updateIndicatorForName]);
+    const index = navItems.findIndex((item) => item.name === activeLink);
+    moveIndicator(index);
+  }, [activeLink, navItems, moveIndicator]);
 
-  // Initialize indicator once nav items render
   useEffect(() => {
-    // small timeout to let DOM paint the nav items
-    const t = setTimeout(() => updateIndicatorForName(activeLink), 60);
-    return () => clearTimeout(t);
-  }, []); // run once on mount
+    if (!parallaxRef?.current) return;
 
-  // Scroll handler: watches parallax position and moves indicator accordingly
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
+    const checkParallaxPosition = () => {
+      try {
+        setScrolled(window.scrollY > 50);
 
-      if (!parallaxRef?.current?.currentPosition) return;
+        const container = parallaxRef.current.container.current;
+        if (!container) return;
 
-      const currentPosition = parallaxRef.current.currentPosition();
-      // find closest nav item
-      let closestItem = navItems[0];
-      let smallestDiff = Math.abs(navItems[0].offset - currentPosition);
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+        const maxScroll = scrollHeight - clientHeight;
+        const currentPos = (scrollTop / maxScroll) * 5.5;
 
-      navItems.forEach((item) => {
-        const diff = Math.abs(item.offset - currentPosition);
-        if (diff < smallestDiff) {
-          smallestDiff = diff;
-          closestItem = item;
+        // Only activate indicators after passing first screen (position > 0.5)
+        if (currentPos < 0.5) {
+          if (lastActiveRef.current !== null) {
+            lastActiveRef.current = null;
+            setActiveLink(null);
+          }
+          rafRef.current = requestAnimationFrame(checkParallaxPosition);
+          return;
         }
-      });
 
-      if (closestItem.name !== activeLink) {
-        setActiveLink(closestItem.name);
-        updateIndicatorForName(closestItem.name);
+        let activeItem = null;
+
+        // Find the first section where currentPos has passed its offset
+        for (let i = navItems.length - 2; i >= 0; i--) {
+          // Skip last item (Contact)
+          if (currentPos >= navItems[i].offset - 0.15) {
+            activeItem = navItems[i];
+            break;
+          }
+        }
+
+        // Only update if different from last active
+        if (activeItem?.name !== lastActiveRef.current) {
+          lastActiveRef.current = activeItem?.name || null;
+          setActiveLink(activeItem?.name || null);
+        }
+
+        rafRef.current = requestAnimationFrame(checkParallaxPosition);
+      } catch (error) {
+        console.error("Parallax tracking error:", error);
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    rafRef.current = requestAnimationFrame(checkParallaxPosition);
 
-    // also call once to set initial state
-    handleScroll();
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [parallaxRef, navItems]);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [parallaxRef, activeLink, navItems, updateIndicatorForName]);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      moveIndicator(null); // Start with no indicator
+    }, 100);
 
-  const handleNavigation = (item, index) => {
+    return () => clearTimeout(timeout);
+  }, [moveIndicator]);
+
+  const handleNavClick = (item, index) => {
     setActiveLink(item.name);
-    // move indicator immediately on click
-    moveIndicatorToIndex(index);
-
     if (item.isRoute) {
       navigate("/contact");
-    } else if (parallaxRef.current) {
+    } else if (parallaxRef?.current) {
       parallaxRef.current.scrollTo(item.offset);
     }
   };
@@ -121,50 +141,51 @@ export default function Header({ parallaxRef }) {
           whileHover={{ scale: 1.05 }}
           onClick={() => {
             navigate("/");
-            setActiveLink("Intro");
-            if (parallaxRef.current) {
-              parallaxRef.current.scrollTo(0);
-            }
-            // move indicator to Intro index (0)
-            moveIndicatorToIndex(0);
+            setActiveLink(null);
+            parallaxRef?.current?.scrollTo(0);
           }}
           style={{ display: "flex", alignItems: "center", gap: "8px" }}
         >
           <img
             src={bgImage}
-            alt="Appify Logo"
-            style={{
-              width: "48px",
-              height: "48px",
-              objectFit: "contain",
-            }}
+            alt="Logo"
+            style={{ width: "48px", height: "48px" }}
           />
           Zynapase
         </motion.div>
 
         <nav>
-          <ul className="nav-list" style={{ position: "relative" }}>
-            {/* active indicator (positioned inside ul) */}
+          <ul
+            className="nav-list"
+            ref={navListRef}
+            style={{ position: "relative" }}
+          >
             <motion.span
               className="active-indicator"
+              initial={{ opacity: 0 }}
               animate={controls}
-              initial={{
-                x:
-                  document.querySelector(".nav-item:first-child")?.offsetLeft ||
-                  0,
-                width:
-                  document.querySelector(".nav-item:first-child")
-                    ?.offsetWidth || 0,
+              style={{
+                position: "absolute",
+                bottom: 0,
+                height: "2px",
+                borderRadius: "1px",
+                zIndex: 10,
               }}
             />
             {navItems.map((item, index) => (
               <motion.li
                 key={item.name}
                 className="nav-item"
-                whileHover={{ scale: 1.05 }}
-                onClick={() => handleNavigation(item, index)}
-                ref={index === 0 ? observerRef : null}
-                style={{ display: "inline-block", padding: "6px 8px" }}
+                whileHover={!item.isRoute ? { scale: 1.05 } : undefined}
+                onClick={() => handleNavClick(item, index)}
+                style={{
+                  display: "inline-block",
+                  padding: item.isRoute ? "0" : "6px 8px", // Remove padding from li for Contact
+                  cursor: "none",
+                  position: "relative",
+                  zIndex: 1,
+                  marginLeft: item.isRoute ? "12px" : "0", // Add spacing before Contact button
+                }}
               >
                 <span
                   className={`nav-link ${
@@ -172,6 +193,7 @@ export default function Header({ parallaxRef }) {
                   }`}
                 >
                   {item.name}
+                  {item.isRoute && <span />}
                 </span>
               </motion.li>
             ))}
