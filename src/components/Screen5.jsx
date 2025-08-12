@@ -10,16 +10,64 @@ const sampleImage = bgWeb;
 
 const cards = [
   {
-    title: "Marketing & Management Online Courses",
-    description: "Learn strategies to boost your business success.",
+    id: 1,
+    color: "#9fa1fb",
+    hoverColor: "#ff7675",
+    title: "Innovative Strategies",
+    description: "Explore cutting-edge methods to drive your business forward.",
+    highlight: "Growth Mindset",
+    image:
+      "https://plus.unsplash.com/premium_photo-1690407617686-d449aa2aad3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: "Learn From the Recognized Experts of Business",
-    description: "Get insights and mentorship from industry leaders.",
+    id: 2,
+    color: "#74b9ff",
+    hoverColor: "#ffeaa7",
+    title: "Global Networking",
+    description: "Connect with leaders from around the world.",
+    highlight: "Collaboration",
+    image:
+      "https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: "Perfect for Improving Your Business Skills",
-    description: "Enhance your professional skills with hands-on training.",
+    id: 3,
+    color: "#55efc4",
+    hoverColor: "#fd79a8",
+    title: "Sustainable Practices",
+    description: "Learn how to balance profit with environmental impact.",
+    highlight: "Eco Leadership",
+    image:
+      "https://plus.unsplash.com/premium_photo-1661602011150-6c6f8b9ba788?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 4,
+    color: "#fab1a0",
+    hoverColor: "#a29bfe",
+    title: "Market Analysis",
+    description: "Gain insights into industry trends and opportunities.",
+    highlight: "Data Driven",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 5,
+    color: "#81ecec",
+    hoverColor: "#dfe6e9",
+    title: "Leadership Development",
+    description: "Unlock your potential with proven leadership frameworks.",
+    highlight: "Lead with Impact",
+    image:
+      "https://images.unsplash.com/photo-1628125660717-5190c3fdfb86?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 6,
+    color: "#fdcb6e",
+    hoverColor: "#636e72",
+    title: "Financial Planning",
+    description: "Master budgeting, investment, and risk management.",
+    highlight: "Strategic Finance",
+    image:
+      "https://images.unsplash.com/photo-1672825464619-79acee9f7e29?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -30,7 +78,7 @@ export default function ResearchScreen() {
     <>
       {/* Background gradient layer */}
       <ParallaxLayer
-        offset={4}
+        offset={3.6}
         speed={0}
         style={{
           backgroundImage: `url(${backbg})`,
@@ -43,7 +91,7 @@ export default function ResearchScreen() {
 
       {/* Main content container */}
       <ParallaxLayer
-        offset={4.8}
+        offset={4}
         speed={0.3}
         style={{
           display: "flex",
@@ -51,11 +99,18 @@ export default function ResearchScreen() {
           padding: "40px 20px",
         }}
       >
-        <section style={{ width: "100%" }}>
+        <section
+          style={{
+            width: "100%",
+            minHeight: "100vh", // or height if you want fixed
+            overflow: "visible", // allow tilt to show
+            padding: "50px 0",
+          }}
+        >
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.8, ease: "easeInOut" }} // slower
+            transition={{ duration: 1.8, ease: "easeInOut" }}
             style={{
               background: "rgba(255 255 255 / 0.8)",
               backdropFilter: "blur(12px)",
@@ -63,13 +118,15 @@ export default function ResearchScreen() {
               boxShadow: "0 16px 40px rgba(0,0,0,0.1)",
               maxWidth: "1200px",
               width: "100%",
+              maxHeight: "650px",
               margin: "0 auto",
               display: "flex",
               flexDirection: "column",
               padding: "40px",
+              overflow: "visible", // ✅ let tilted cards show
             }}
           >
-            {/* Top section */}
+            {/* Top section stays same */}
             <div
               style={{
                 display: "flex",
@@ -77,6 +134,7 @@ export default function ResearchScreen() {
                 flexWrap: "wrap",
                 alignItems: "center",
                 justifyContent: "space-between",
+                overflow: "visible", // ✅ allow tilt to spill outside
               }}
             >
               {/* Left Text */}
@@ -105,11 +163,10 @@ export default function ResearchScreen() {
                     lineHeight: 1.5,
                   }}
                 >
-                  Business school prepares ambitious leaders with corporate
-                  business frameworks from all corners of the world.
+                  Our team prepares ambitious leaders with corporate business
+                  frameworks from all corners of the world.
                 </motion.p>
                 <motion.div
-                  ref={buttonRef}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
@@ -170,55 +227,148 @@ export default function ResearchScreen() {
               />
             </div>
 
-            {/* Bottom Cards */}
+            {/* Horizontal Auto Scroll Cards */}
             <div
               style={{
-                marginTop: "48px",
-                display: "flex",
-                gap: "24px",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
+                marginTop: "2px",
+                overflow: "visible",
+                position: "relative",
+                padding: "60px 0",
               }}
             >
-              {cards.map((card, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    delay: 0.4 * i,
-                    duration: 1.4,
-                    ease: "easeOut",
-                  }}
-                  whileHover={{
-                    scale: 1.03,
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
-                  }}
-                  style={{
-                    background: "rgba(255 255 255 / 0.85)",
-                    backdropFilter: "blur(8px)",
-                    borderRadius: "16px",
-                    padding: "24px",
-                    flex: "1 1 280px",
-                    boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
-                    cursor: "default",
-                    color: "#222",
-                  }}
-                >
-                  <h3 style={{ fontWeight: "700", marginBottom: "12px" }}>
-                    {card.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "0.95rem",
-                      lineHeight: 1.4,
-                      color: "#555",
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </motion.div>
-              ))}
+              <motion.div
+                initial={{ x: 0 }}
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 100,
+                }}
+                style={{
+                  display: "flex",
+                  gap: "20px",
+                  padding: "0 10px",
+                  width: "max-content",
+                  alignItems: "center",
+                }}
+              >
+                {[...Array(12)].map((_, i) => {
+                  const cardData = cards[i % cards.length];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{
+                        rotate: -10,
+                        backgroundColor: "transparent",
+                      }}
+                      whileHover={{
+                        rotate: 10,
+                        backgroundColor: "rgba(0,0,0,0.2)",
+                        color: "#fff",
+                        scale: 1.05,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15,
+                      }}
+                      style={{
+                        minWidth: "250px",
+                        height: "300px",
+                        borderRadius: "16px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end", // Align content to bottom
+                        boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
+                        border: `2px solid ${cardData.color}`,
+                        position: "relative",
+                        flexShrink: 0,
+                        cursor: "pointer",
+                        color: "#fff",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {/* Full brightness background image */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
+                          backgroundImage: `url(${cardData.image})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          zIndex: 0,
+                        }}
+                      />
+
+                      {/* Gradient overlay at bottom for better text readability */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "60%",
+                          background:
+                            "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)",
+                          zIndex: 1,
+                        }}
+                      />
+
+                      {/* Content Container at bottom with padding */}
+                      <div
+                        style={{
+                          zIndex: 2,
+                          padding: "24px",
+                          width: "100%",
+                        }}
+                      >
+                        {/* Big Title */}
+                        <h3
+                          style={{
+                            fontWeight: "800",
+                            fontSize: "1.8rem",
+                            margin: "0 0 12px 0",
+                            lineHeight: "1.2",
+                            textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+                          }}
+                        >
+                          {cardData.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p
+                          style={{
+                            fontSize: "1rem",
+                            margin: 0,
+                            textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+                            lineHeight: "1.4",
+                          }}
+                        >
+                          {cardData.description}
+                        </p>
+
+                        {/* Highlight (if needed) */}
+                        {cardData.highlight && (
+                          <p
+                            style={{
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              color: cardData.color,
+                              marginTop: "12px",
+                              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+                            }}
+                          >
+                            {cardData.highlight}
+                          </p>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
           </motion.div>
         </section>

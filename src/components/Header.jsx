@@ -16,8 +16,8 @@ export default function Header({ parallaxRef }) {
   // Only include sections we want indicators for
   const navItems = [
     { name: "What We Do", offset: 0.95, isRoute: false },
-    { name: "Services", offset: 1.95, isRoute: false },
-    { name: "Product", offset: 2.9, isRoute: false },
+    { name: "Products", offset: 1.95, isRoute: false },
+    { name: "Services", offset: 2.9, isRoute: false },
     { name: "Research", offset: 4.5, isRoute: false },
     // Contact is included but won't get automatic indicator
     { name: "Contact", offset: 4.95, isRoute: true, noIndicator: true },

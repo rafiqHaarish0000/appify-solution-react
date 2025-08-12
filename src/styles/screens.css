@@ -72,6 +72,24 @@ p {
   cursor: none;
   width: 250px;
 }
+.carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.carousel-title {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.carousel-card {
+  backface-visibility: hidden;
+  will-change: transform;
+}
 
 .contact-button {
    padding: 1rem 2rem;
