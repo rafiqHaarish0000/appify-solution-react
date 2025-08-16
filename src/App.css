@@ -5,8 +5,27 @@ html, body, #root {
   width: 100%;
   height: 100%;
   cursor: none;
-  background-color: #050D21;
   overflow-x: hidden;
+  position: relative;
+}
+
+#root::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/backgroundimg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Dark overlay */
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+  background-blend-mode: darken;        /* Blend image + overlay */
+
+  z-index: -1; /* Keep it behind content */
 }
 
 .app-container {
@@ -30,4 +49,11 @@ html, body, #root {
   left: 0;
   width: 100%;
   z-index: 1000; /* Higher than parallax */
+}
+.portfolio-scroller {
+  overflow: visible !important; /* Prevents clipping */
+}
+
+.portfolio-scroller .swiper-slide {
+  transition: transform 0.3s ease; /* Smooth hover effect */
 }

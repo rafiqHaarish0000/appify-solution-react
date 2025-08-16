@@ -21,9 +21,9 @@ export default function LoadingScreen({ onFinish }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <video autoPlay loop muted className="loading-video">
+      {/* <video autoPlay loop muted className="loading-video">
         <source src={loadingVideo} type="video/mp4" />
-      </video>
+      </video> */}
 
       {/* 3D cube */}
       <motion.div

@@ -28,21 +28,6 @@ const markers = [
 ];
 
 export default function ContactPage() {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const fadeLeft = {
-    hidden: { opacity: 0, x: 80 },
-    visible: { opacity: 1, x: 0 },
-  };
-
-  const fadeRight = {
-    hidden: { opacity: 0, x: -80 },
-    visible: { opacity: 1, x: 0 },
-  };
-
   const [hoverD, setHoverD] = useState(null);
   const [ready, setReady] = useState(false);
   const globeEl = useRef();

@@ -4,6 +4,7 @@
   height: 100vh;
   overflow: hidden;
   display: flex;
+  background: rgb(4, 7, 40);
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,6 @@ export default function Screen1() {
         speed={0.5}
         factor={2}
         style={{
-          backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.5)",

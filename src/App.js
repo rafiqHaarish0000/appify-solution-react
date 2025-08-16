@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="app-container">
+      <div className="app-container" style={{backgroundImage:bgImage}} >
         <CustomCursor />
         <Header parallaxRef={parallaxRef} />
         <Routes>

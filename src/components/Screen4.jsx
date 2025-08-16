@@ -97,7 +97,6 @@ export default function Screen4() {
         offset={3}
         speed={0.2}
         style={{
-          background: "linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)",
           zIndex: -1,
         }}
       />
@@ -107,10 +106,9 @@ export default function Screen4() {
           ref={sectionRef}
           style={{
             minHeight: "100vh",
-            background: "#fff",
             borderRadius: "20px",
             padding: "4rem 2rem",
-            maxWidth: "1400px",
+            maxWidth: "1300px",
             margin: "0 auto",
             position: "relative",
             boxShadow: "0 10px 50px rgba(0,0,0,0.15)",
@@ -124,7 +122,12 @@ export default function Screen4() {
               left: 0,
               width: "100%",
               height: "100%",
-              background: "linear-gradient(45deg, #f3f4f6, #e5e7eb)",
+              // Classic glass effect
+              backgroundColor: "rgba(255, 255, 255, 0.2)", // light transparent glass
+              backdropFilter: "blur(10px)", // blur behind
+              WebkitBackdropFilter: "blur(10px)", // Safari support
+              borderRadius: "10px", // smooth edges
+              border: "1px solid rgba(255, 255, 255, 0.2)", // subtle border
               scale: bgScale,
               zIndex: 0,
             }}
@@ -148,8 +151,8 @@ export default function Screen4() {
                   style={{
                     ...cardBaseStyle,
                     backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url(${card.image})`,
-                    top: i < 2 ? "28%" : "49%",
-                    left: i % 2 === 0 ? "20%" : "55%",
+                    top: i < 2 ? "23%" : "49%",
+                    left: i % 2 === 0 ? "20%" : "53%",
                     x: transforms[i].x,
                     y: transforms[i].y,
                   }}
@@ -218,9 +221,9 @@ export default function Screen4() {
           >
             <motion.h2
               style={{
-                fontSize: "3.5rem",
-                fontWeight: "800",
-                color: "#111",
+                fontSize: "4rem",
+                fontWeight: "900",
+                color: "#fff",
                 marginBottom: "1rem",
                 textShadow: "0 2px 10px rgba(0,0,0,0.1)",
               }}
@@ -232,13 +235,23 @@ export default function Screen4() {
               Our{" "}
               <span style={{ color: "var(--primary-color)" }}>Services</span>
             </motion.h2>
+            <motion.div
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "120px", opacity: 1 }}
+              transition={{ duration: 3, ease: "easeOut", delay: 2 }}
+              style={{
+                height: "4px",
+                background: "linear-gradient(90deg, #111c95ff, #00e5ff)",
+                margin: "0 auto 1.5rem auto",
+                borderRadius: "2px",
+              }}
+            />
             <motion.p
               style={{
-                fontSize: "1.2rem",
-                color: "#444",
+                fontSize: "1.5rem",
+                color: "#b3b4f8ff",
                 maxWidth: "700px",
                 margin: "1.5rem auto",
-                lineHeight: "1.6",
               }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -257,7 +270,7 @@ export default function Screen4() {
               whileHover={{
                 scale: 1.05,
                 backgroundColor: "#9fa1fbff", // black on hover
-                color: "#fff",
+                color: "#000",
                 boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
               }}
               whileTap={{ scale: 0.97 }}
